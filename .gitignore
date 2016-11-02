@@ -1,3 +1,6 @@
+# Ignore temporary files
+*~
+
 # PhpStorm project folder
 /.idea/
 
