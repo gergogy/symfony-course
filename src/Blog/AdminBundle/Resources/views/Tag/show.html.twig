@@ -1,0 +1,30 @@
+{% extends '@Admin/layout.html.twig' %}
+
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block section %}
+    <h1>{{ tag.name }}</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td><a href="{{ path('blog_admin_tag_edit', { id: tag.id }) }}">{{ tag.name }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_admin_tag_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('blog_admin_tag_edit', { 'id': tag.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

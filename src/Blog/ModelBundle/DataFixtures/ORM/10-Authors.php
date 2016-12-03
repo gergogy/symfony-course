@@ -31,9 +31,12 @@ class Authors extends AbstractFixture implements OrderedFixtureInterface
         $a1->setName('Ádám');
         $a2 = new Author();
         $a2->setName('Éva');
+        $a3 = new Author();
+        $a3->setName('Tamás');
 
         $manager->persist($a1);
         $manager->persist($a2);
+        $manager->persist($a3);
 
         $manager->flush();
     }

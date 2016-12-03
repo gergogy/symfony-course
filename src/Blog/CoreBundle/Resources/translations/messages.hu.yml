@@ -1,0 +1,45 @@
+home: Főoldal
+tags: Címkék
+
+on: 'Közzétéve:'
+by: 'szerző:'
+read.more: Tovább
+name: Név
+send: Küldés
+modify: Szerkesztő oldal
+logout: Kijelentkezés
+
+tag:
+    plural: Címkék
+    name: Név
+    title: Címke
+    by: Bejegyzések címke szerint
+    empty: Még nincs ehhez a címkéhez bejegyzés rendelve
+    no_tags: Még nincs címke létrehozva
+    create: Új címke létrehozása
+    edit:
+        adv: "'%name%' címke szerkesztése"
+        simple: Szerkesztés
+
+post:
+    title: Bejegyzés címe
+    body: Bejegyzés tartalma
+    plural: Bejegyzések
+    latest: Legújabb bejegyzések
+    on: 'Közzétéve:'
+    by: Szerző
+    create: Új bejegyzés
+    by.author: '%name% bejegyzései'
+    comments: '{0} Nincs komment|[1,Inf] %count% komment'
+    edit:
+        adv: "'%title%' bejegyzés szerkesztése"
+        simple: Szerkesztés
+
+comment:
+    singular: Komment
+    plural: Kommentek
+    write: Írd meg a kommented
+
+author:
+    title: Szerző
+    empty.posts: Ez a szerző még nem írt bejegyzést

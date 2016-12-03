@@ -1,16 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: blush
- * Date: 2016. 11. 02.
- * Time: 20:26
- */
 
 namespace Blog\ModelBundle\DataFixtures\ORM;
 
 
 use Blog\ModelBundle\Entity\Author;
 use Blog\ModelBundle\Entity\Post;
+use Blog\ModelBundle\Entity\Tag;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -32,17 +27,22 @@ class Posts extends AbstractFixture implements OrderedFixtureInterface
         $p1 = new Post();
         $p1->setTitle('Lorem ipsum dolor sit amet 1')
             ->setBody(self::EXAMPLE_TEXT_1)
-            ->setAuthor($this->getAuthor($manager, 'Ádám'));
+            ->setAuthor($this->getAuthor($manager, 'Ádám'))
+            ->addTag($this->getTag($manager, 'Test tag'));
 
         $p2 = new Post();
         $p2->setTitle('Lorem ipsum dolor sit amet 2')
             ->setBody(self::EXAMPLE_TEXT_2)
-            ->setAuthor($this->getAuthor($manager, 'Éva'));
+            ->setAuthor($this->getAuthor($manager, 'Éva'))
+            ->addTag($this->getTag($manager, 'Test tag'))
+            ->addTag($this->getTag($manager, 'Test tag 2'));
 
         $p3 = new Post();
         $p3->setTitle('Lorem ipsum dolor sit amet 3')
             ->setBody(self::EXAMPLE_TEXT_3)
-            ->setAuthor($this->getAuthor($manager, 'Éva'));
+            ->setAuthor($this->getAuthor($manager, 'Éva'))
+            ->addTag($this->getTag($manager, 'Test tag 2'))
+            ->addTag($this->getTag($manager, 'Test tag 3'));
 
         $manager->persist($p1);
         $manager->persist($p2);
@@ -59,6 +59,20 @@ class Posts extends AbstractFixture implements OrderedFixtureInterface
     private function getAuthor(ObjectManager $manager, $name)
     {
         return $manager->getRepository(Author::class)->findOneBy(
+            array(
+                'name' => $name
+            )
+        );
+    }
+
+    /**
+     * @param ObjectManager $manager
+     * @param $name
+     * @return Tag
+     */
+    private function getTag(ObjectManager $manager, $name)
+    {
+        return $manager->getRepository(Tag::class)->findOneBy(
             array(
                 'name' => $name
             )

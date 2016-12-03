@@ -2,6 +2,7 @@
 
 namespace Blog\ModelBundle\Repository;
 
+use Blog\ModelBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -12,4 +13,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+    /**
+     * @param int $num
+     * @return array
+     */
+    public function findLatest($num)
+    {
+        $qb = $this->getQueryBuilder()
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($num);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return Post
+     */
+    public function findFirst()
+    {
+        $qb = $this->getQueryBuilder()
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1);
+
+        return $qb->getQuery()->getSingleResult();
+    }
+
+    private function getQueryBuilder()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->getRepository(Post::class)
+            ->createQueryBuilder('p');
+
+        return $qb;
+    }
 }

@@ -1,0 +1,18 @@
+{% extends '@Admin/layout.html.twig' %}
+
+{% block title %}{{ 'post.create'|trans }}{% endblock %}
+
+{% block section %}
+    <h1>{{ 'post.create'|trans }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_admin_post_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

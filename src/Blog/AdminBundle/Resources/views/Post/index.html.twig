@@ -1,0 +1,57 @@
+{% extends '@Admin/layout.html.twig' %}
+
+{% block title %}Posts list{% endblock %}
+
+{% block section %}
+    <h1>Posts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Author</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.createdAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ post.updatedAt|date('Y-m-d H:i:s') }}</td>
+                <td><a href="{{ path('blog_admin_post_edit', { id: post.id }) }}">{{ post.title }}</a></td>
+                <td>{{ post.body|truncate(150) }}</td>
+                <td><a href="{{ path('blog_admin_author_edit', { id: post.author.id }) }}">{{ post.author.name }}</a></td>
+                <td>
+                    <ul>
+                    {% for tag in post.tags %}
+                        <li><a href="#">{{ tag.name }}</a></li>
+                    {% else %}
+                        <li>{{ 'tag.no_tags'|trans }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blog_admin_post_show', { 'id': post.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blog_admin_post_edit', { 'id': post.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_admin_post_new') }}">Create a new post</a>
+        </li>
+    </ul>
+{% endblock %}

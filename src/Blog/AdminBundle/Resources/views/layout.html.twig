@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/admin/css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <header>
+        <p>Symfony 2 blog</p>
+        <nav>
+            <ul>
+                <li><a href="#">Posts</a></li>
+                <li><a href="{{ path('blog_admin_author_index') }}">{{ 'author.title'|trans }}</a></li>
+                <li><a href="{{ path('blog_admin_tag_index') }}">{{ 'tags'|trans }}</a></li>
+                <li><a href="{{ path('blog_admin_post_index') }}">{{ 'post.plural'|trans }}</a></li>
+
+                {% if app.user %}
+                    <li><a href="{{ path('blog_admin_security_logout') }}">{{ 'logout'|trans }}</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block sidebar %}{% endblock %}
+
+    <section>
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <p class="session-message">{{ message }}</p>
+            {% endfor %}
+        {% endfor %}
+        {% block section %}{% endblock %}
+    </section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "@Core/layout.html.twig" %}
+
+{% block title %}{{ 'tag.by'|trans }}: '{{ tag.name }}'{% endblock %}
+
+{% block sidebar %}
+    <aside>
+        {{ render(controller('CoreBundle:Tag:index')) }}
+    </aside>
+{% endblock %}
+
+{% block section %}
+    <h1>{{ 'tag.by'|trans }}: '{{ tag.name }}'</h1>
+
+    {% for post in posts %}
+        {{ include('@Core/Post/_post.html.twig', { post: post }) }}
+    {% else %}
+        {{ 'tag.no_tags'|trans }}
+    {% endfor %}
+{% endblock %}
