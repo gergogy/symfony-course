@@ -1,7 +1,9 @@
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin
+    prefix:   /admin/{_locale}
+    requirements:
+        _locale: 'en|hu'
 
 core:
     resource: "@CoreBundle/Controller/"

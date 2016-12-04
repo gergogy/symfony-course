@@ -10,6 +10,12 @@
         <nav>
             <ul>
                 <li><a href="{{ path('blog_core_post_index') }}">{{ 'home'|trans }}</a></li>
+                {% if app.user %}
+                <li><a href="{{ path('blog_core_security_logout') }}">{{ 'logout'|trans }}</a></li>
+                {% else %}
+                <li><a href="{{ path('blog_core_security_login') }}">{{ 'login'|trans }}</a></li>
+                <li><a href="{{ path('blog_core_security_register') }}">{{ 'register'|trans }}</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

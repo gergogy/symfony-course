@@ -1,5 +1,14 @@
 home: Home
 tags: Tags
+settings: System settings
+anonymous_comment: Enable anonymous commenting
+anonymous_comment_not_allowed: Unable to comment. Please login!
+undefined: ---
+
+username: Username:
+password: Password:
+login: Login
+email: E-mail:
 
 on: on
 by: by
@@ -43,3 +52,7 @@ comment:
 author:
     title: Author
     empty.posts: This author did not write any post yet
+register: Sign up
+not_same: The fields values must be the same
+password: 'Password:'
+password_repeat: 'Repeat password:'

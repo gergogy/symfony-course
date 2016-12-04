@@ -22,6 +22,9 @@ class CoreExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('core.bullshit_filter.start', $config['bullshit_filter']['start']);
+        $container->setParameter('core.bullshit_filter.end', $config['bullshit_filter']['end']);
+
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }

@@ -1,0 +1,25 @@
+{% extends '@Core/layout.html.twig' %}
+
+{% block title %}User login{% endblock %}
+
+{% block sidebar %}
+    <aside>
+        <a href="{{ path('blog_core_security_register') }}">{{ 'register'|trans }}</a>
+    </aside>
+{% endblock %}
+
+{% block section %}
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('blog_core_security_logincheck') }}" method="post">
+        <label for="username">{{ 'email'|trans }}</label>
+        <input type="text" id="username" name="_email" value="{{ last_username }}" />
+
+        <label for="password">{{ 'password'|trans }}</label>
+        <input type="password" id="password" name="_password" />
+
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}

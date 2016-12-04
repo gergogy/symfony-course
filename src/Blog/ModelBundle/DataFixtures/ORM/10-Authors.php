@@ -29,10 +29,16 @@ class Authors extends AbstractFixture implements OrderedFixtureInterface
     {
         $a1 = new Author();
         $a1->setName('Ádám');
+        $a1->setRoles('ROLE_SUPER_ADMIN');
+        $a1->setPassword('admin');
         $a2 = new Author();
         $a2->setName('Éva');
+        $a2->setRoles('ROLE_ADMIN');
+        $a2->setPassword('admin');
         $a3 = new Author();
         $a3->setName('Tamás');
+        $a3->setRoles('ROLE_ADMIN');
+        $a3->setPassword('admin');
 
         $manager->persist($a1);
         $manager->persist($a2);

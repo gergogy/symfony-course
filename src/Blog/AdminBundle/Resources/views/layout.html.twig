@@ -9,10 +9,10 @@
         <p>Symfony 2 blog</p>
         <nav>
             <ul>
-                <li><a href="#">Posts</a></li>
                 <li><a href="{{ path('blog_admin_author_index') }}">{{ 'author.title'|trans }}</a></li>
                 <li><a href="{{ path('blog_admin_tag_index') }}">{{ 'tags'|trans }}</a></li>
                 <li><a href="{{ path('blog_admin_post_index') }}">{{ 'post.plural'|trans }}</a></li>
+                <li><a href="{{ path('blog_admin_setting_index') }}">{{ 'settings'|trans }}</a></li>
 
                 {% if app.user %}
                     <li><a href="{{ path('blog_admin_security_logout') }}">{{ 'logout'|trans }}</a></li>

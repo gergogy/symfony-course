@@ -44,6 +44,11 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+core:
+    bullshit_filter:
+        start: '-='
+        end: '=-'
+
 # Doctrine Configuration
 doctrine:
     dbal:

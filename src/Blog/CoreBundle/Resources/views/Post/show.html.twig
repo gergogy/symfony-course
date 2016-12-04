@@ -9,7 +9,7 @@
         <h3>{{ 'author.title'|trans }}</h3>
 
         <p>
-            <a href="{{ path('blog_core_post_show', { slug: post.slug }) }}" title="{{ 'post.by.author'|trans({ '%name%': post.author.name }) }}">
+            <a href="{{ path('blog_core_author_show', { slug: post.author.slug }) }}" title="{{ 'post.by.author'|trans({ '%name%': post.author.name }) }}">
                 {{ post.author.name }}
             </a>
         </p>
@@ -19,7 +19,7 @@
 {% block section %}
     <article class="post">
         <header>
-            <h1>{{ post.title }}</h1>
+            <h1>{{ post.title|bullshit }}</h1>
             <p>
                 {{ 'post.on'|trans }} <time datetime="{{ post.createdAt|date('c') }}">{{ post.createdAt|date }}</time>
             </p>
@@ -35,8 +35,14 @@
         {{ include('@Core/Post/_comment.html.twig', { comment: comment }) }}
     {% endfor %}
 
+    {% if anonymous_comments or app.user %}
     <h4>{{ 'comment.write'|trans }}</h4>
 
     {{ form(form, { action: path('blog_core_post_createcomment', { slug: post.slug }) ~ '#comments' }) }}
+    {% else %}
+        <p>
+            <strong>{{ 'anonymous_comment_not_allowed'|trans }}</strong>
+        </p>
+    {% endif %}
 {% endblock %}
 

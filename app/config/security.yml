@@ -3,6 +3,11 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        Blog\ModelBundle\Entity\Author: plaintext
+
+        Blog\ModelBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 15
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
@@ -10,6 +15,20 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
+        user_provider:
+            chain:
+                providers: [user, author]
+        admin_provider:
+            chain:
+                providers: [in_memory, author]
+        author:
+            entity:
+                class: ModelBundle:Author
+                property: slug
+        user:
+            entity:
+                class: ModelBundle:User
+                property: email
         in_memory:
             memory:
                 users:
@@ -23,18 +42,36 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        main:
+            pattern: ^/
+            anonymous: ~
+            provider: user_provider
+
+            form_login:
+                login_path: blog_core_security_login
+                check_path: blog_core_security_logincheck
+                username_parameter: _email
+            logout:
+                path: blog_core_security_logout
+                target: blog_core_post_index
+
         admin_area:
             pattern: ^/admin/
             anonymous: ~
+            provider: admin_provider
+
             http_basic:
+
             form_login:
                 login_path: blog_admin_security_login
                 check_path: blog_admin_security_logincheck
+
             logout:
                 path: blog_admin_security_logout
-                target: /admin/post
+                target: blog_admin_post_index
 
     access_control:
-        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/post, roles: ROLE_ADMIN }
-        - { path: ^/admin/, roles: ROLE_SUPER_ADMIN }
+        - { path: '^/admin/[a-z]{2}/login$', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/admin/[a-z]{2}/post', roles: ROLE_ADMIN }
+        - { path: '^/admin/[a-z]{2}/$', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/admin/', roles: ROLE_SUPER_ADMIN }

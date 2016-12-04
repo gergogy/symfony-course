@@ -1,5 +1,16 @@
 home: Főoldal
 tags: Címkék
+settings: Rendszerbeállítások
+anonymous_comment: Anonim kommentelés engedélyezése
+anonymous_comment_not_allowed: A kommentelés le van tiltva. Jelentkezzen be!
+undefined: ---
+yes: igen
+no: nem
+
+username: Felhasználónév:
+password: Jelszó:
+login: Bejelentkezés
+email: E-mail:
 
 on: 'Közzétéve:'
 by: 'szerző:'
@@ -43,3 +54,7 @@ comment:
 author:
     title: Szerző
     empty.posts: Ez a szerző még nem írt bejegyzést
+register: Regisztráció
+not_same: A két mező értéke nem egyezik meg
+password: Jelszó:
+password_repeat: Jelszó ismét:

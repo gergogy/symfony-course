@@ -21,6 +21,13 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('core');
 
+        $rootNode->children()
+            ->arrayNode('bullshit_filter')
+            ->children()
+                ->scalarNode('start')->defaultValue('*')->end()
+                ->scalarNode('end')->defaultValue('*')->end()
+            ->end();
+
         return $treeBuilder;
     }
 }

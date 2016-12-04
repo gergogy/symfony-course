@@ -2,6 +2,7 @@ parameters:
     author_manager.class: Blog\CoreBundle\Services\AuthorManager
     post_manager.class: Blog\CoreBundle\Services\PostManager
     tag_manager.class: Blog\CoreBundle\Services\TagManager
+    configuration.class: Blog\CoreBundle\Services\Configuration
 
 services:
     core.author_manager:
@@ -14,4 +15,8 @@ services:
 
     core.tag_manager:
         class: '%tag_manager.class%'
+        arguments: ['@doctrine.orm.entity_manager']
+
+    core.settings:
+        class: '%configuration.class%'
         arguments: ['@doctrine.orm.entity_manager']
